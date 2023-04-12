@@ -20,7 +20,7 @@ def alertPublicIP(current_ip):
     last_ip=readLastValue(config.PUBLICIP_PATH)[:-1]
 
     if current_ip != last_ip:
-        # Envío de una alerta por correo electrónico
+        # Envio de una alerta por correo electronico
         subject = "ALETR: Public IP changed!"
         body = "The public IP address has changed to {}.".format(current_ip)
         sendEmail(subject, body)

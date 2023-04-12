@@ -7,6 +7,8 @@ With this script you can :
 - Periodically monitor that the most important devices within the network are active
 - Send email alarms in case something fail or any suspicious activity
 
+You should install scapy, requests, ping3, speedtest-cli
+
 
 ## Keys :key:
 Plese add you own keys and paths in config.py file
