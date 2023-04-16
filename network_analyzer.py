@@ -15,7 +15,7 @@ def getCurrentPublicIP():
     ip_request = requests.get('https://api.ipify.org').text
     alertPublicIP(ip_request)
     addLineInFile(ip_request,"publicip")
-    print("\nPUBLIC IP: " + str(ip_request))
+    print("\nPUBLIC IP:\n" + str(ip_request))
 
 def alertPublicIP(current_ip):
     last_ip=readLastValue(config.PUBLICIP_PATH)[:-1]
@@ -76,11 +76,6 @@ def scanNetwork():
     devices = []
     for received in result:
         devices.append({'ip': received.answer.payload.psrc, 'mac': received.answer.payload.hwsrc})
-
-    # Adding equipment names to the device list
-    #for device in devices:
-        # Ping each IP address to obtain its name
-    #    response = os.popen(f"ping -q -c 1 -W 1000 {device['ip']}").read()  
     
     # Print connected devices
     print("DEVICES CONNECTED TO THE NETWORK:")
@@ -127,10 +122,26 @@ def monitorImportantIps(list):
             print(subject, msg)
             sendEmail(subject, msg)
 
+def cleanLines(file1, file2):
+    max=200
+    with open(file1, "r+") as file:
+        lines = file.readlines()
+        if len(lines) > max:
+            file.seek(0)
+            file.writelines(lines[1:])
+            file.truncate()
+    with open(file2, "r+") as file:
+        lines = file.readlines()
+        if len(lines) > max:
+            file.seek(0)
+            file.writelines(lines[1:])
+            file.truncate()
 
+    
 ########## PROGRAM ##########
 os.system('clear')
 scanNetwork()
 getCurrentPublicIP()
 speedTest()
 monitorImportantIps(config.important_ips)
+cleanLines(config.PUBLICIP_PATH, config.SPEED_PATH)
