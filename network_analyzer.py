@@ -9,6 +9,7 @@ import config
 import subprocess
 from datetime import date
 import ping3
+import datetime
 
 def getCurrentPublicIP():
     ip_request = requests.get('https://api.ipify.org').text
@@ -82,7 +83,7 @@ def scanNetwork():
     #    response = os.popen(f"ping -q -c 1 -W 1000 {device['ip']}").read()  
     
     # Print connected devices
-    print("\nDEVICES CONNECTED TO THE NETWORK:")
+    print("DEVICES CONNECTED TO THE NETWORK:")
 
     for device in devices:
         try:
@@ -104,8 +105,9 @@ def speedTest():
         download = float(lines[1].split(' ')[1])
         upload = float(lines[2].split(' ')[1])
         today = str(date.today())
+        hour = datetime.datetime.now().time().strftime("%H:%M:%S")
         print("\nSPEED TEST:")
-        msg = "Date: {}, Ping: {:.2f} ms, Download: {:.2f} Mbps, Upload: {:.2f} Mbps".format(today, ping, download, upload)
+        msg = "Date: {}, Hour: {}, Ping: {:.2f} ms, Download: {:.2f} Mbps, Upload: {:.2f} Mbps".format(today, hour, ping, download, upload)
         print(msg)
         addLineInFile(msg,"speed")
 
