@@ -14,7 +14,7 @@ whitelist= {
     }
 
 # Important IPs
-important_ips= (
-    #192.168.1.1,
-    #192.168.1.2
-)
+important_ips= {
+    #"192.168.1.1":"Important IP 1",
+    #"192.168.1.2":"Important IP 2"
+}
