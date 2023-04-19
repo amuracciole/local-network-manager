@@ -117,7 +117,12 @@ def monitorImportantIps(list):
                 msg="No internet connection"
                 subject="No internet connection"
             else:
-                msg='IP address {} is not reachable'.format(ip)
+                if format(ip) == "8.8.8.8":
+                    msg='IP address {} is not reachable'.format(ip)
+                else:
+                    device_name = config.important_ips[ip]
+                    msg='Device: {} (IP address: {}) is not reachable.'.format(device_name,ip)
+
                 subject="Device not reachable!"
             print(subject, msg)
             sendEmail(subject, msg)
@@ -143,5 +148,5 @@ os.system('clear')
 scanNetwork()
 getCurrentPublicIP()
 speedTest()
-monitorImportantIps(config.important_ips)
+monitorImportantIps(config.important_ips.keys())
 cleanLines(config.PUBLICIP_PATH, config.SPEED_PATH)
