@@ -107,10 +107,10 @@ def speedTest():
         addLineInFile(msg,"speed")
 
 def monitorImportantIps(list):
-    print("\nMONITORING IMPORTANT IP´S:")
+    print("\nMONITORING IMPORTANT IPs:")
     for ip in list:
         response_time = ping3.ping(ip)
-        if response_time is not None:
+        if response_time is not False:
             print('IP address {} is reachable'.format(ip))
         else:
             if ip == "8.8.8.8":
