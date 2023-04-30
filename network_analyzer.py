@@ -88,14 +88,14 @@ def scanNetwork():
             sendEmail("Unknown device connected to the network",msg)
 
 def speedTest():
-    process = subprocess.Popen(["speedtest-cli", "--simple"], stdout=subprocess.PIPE)
+    process = subprocess.Popen(["/usr/local/bin/speedtest-cli", "--simple"], stdout=subprocess.PIPE)
     output, error = process.communicate()
 
     if error is not None:
         print("Error running speedtest-cli:", error)
     else:
         output = output.decode('utf-8')
-        lines = output.strip().split('\n')
+        lines = output.split('\n')
         ping = float(lines[0].split(' ')[1])
         download = float(lines[1].split(' ')[1])
         upload = float(lines[2].split(' ')[1])
@@ -147,6 +147,9 @@ def cleanLines(file1, file2):
 os.system('clear')
 scanNetwork()
 getCurrentPublicIP()
-speedTest()
 monitorImportantIps(config.important_ips.keys())
+try:
+    speedTest()
+except:
+    print("Error speed test")
 cleanLines(config.PUBLICIP_PATH, config.SPEED_PATH)
