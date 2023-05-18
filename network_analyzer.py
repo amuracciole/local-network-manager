@@ -22,7 +22,7 @@ def alertPublicIP(current_ip):
 
     if current_ip != last_ip:
         # Envio de una alerta por correo electronico
-        subject = "ALETR: Public IP changed!"
+        subject = "ALERT: Public IP changed!"
         body = "The public IP address has changed to {}.".format(current_ip)
         sendEmail(subject, body)
 
