@@ -27,7 +27,7 @@ Allows you to send an email with a notification once bot make an operation. This
 ## Crontab :stopwatch:
 You MUST include the following line in you crontab file to run the script every day at 4:00 AM (You can schedule as you wish)
 
-**Note: In case you have devices (like Iphones with "Private Wi-Fi address) I will recommend you to disable that feature for your WiFi networkto avoid false-positives alerts. At the end of the day that is a known network, so it is not necessary to hide your real MAC address**
+**Note: In case you have devices (like Iphones with private Wi-Fi address) I will recommend you to disable that feature for your WiFi network to avoid false-positives alerts. At the end of the day, that is a known network, so it is not necessary to hide your real MAC address**
 
 0 4 * * * *project path*
 
